@@ -4,9 +4,9 @@ const mongoose = require('mongoose')
 
 const controller = require('./controller')
 
-mongoose.connect('mongodb://localhost/extSessionScraper', {
-  useNewUrlParser: true
-})
+const MONGODB_URI =
+  process.env.MONGODB_URI || 'mongodb://localhost/extSessionScraper'
+mongoose.connect(MONGODB_URI, { useNewUrlParser: true })
 
 const app = express()
 const PORT = process.env.PORT || 8080
