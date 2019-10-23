@@ -1,0 +1,34 @@
+{
+  "name": "extended-session-mongoose-oct-2019",
+  "version": "1.0.0",
+  "description": "a mongo mongoose extended session for ucsd extenstion",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Travo100/mongo-mongoose-extended-session-19.git"
+  },
+  "keywords": [
+    "mongo",
+    "mongoose",
+    "express",
+    "axios",
+    "web",
+    "scraping"
+  ],
+  "author": "Travis Thompson",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Travo100/mongo-mongoose-extended-session-19/issues"
+  },
+  "homepage": "https://github.com/Travo100/mongo-mongoose-extended-session-19#readme",
+  "dependencies": {
+    "axios": "^0.18.0",
+    "cheerio": "^1.0.0-rc.3",
+    "express": "^4.16.4",
+    "express-handlebars": "^3.0.2",
+    "mongoose": "^5.5.2"
+  }
+}
