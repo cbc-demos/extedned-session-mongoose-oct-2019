@@ -4,18 +4,14 @@ const db = require('../model')
 
 module.exports = app => {
   app.get('/', (req, res) => {
-    db.Article
-      .find()
+    db.Article.find()
       .sort({ _id: -1 })
       .limit(20)
+      .populate('comments')
       .then(dbArticles => res.render('home', { articles: dbArticles }))
       .catch(error => res.status(500).json(error))
   })
 
-  // DONE step 1: getting a request working from hackerank
-  // DONE step 2: create an object for a single article
-  // DONE step 3: get an array of scraped article data
-  // step 4: save that array into the database
   app.get('/scrape', (req, res) => {
     const hackerRankUrl = 'https://hackernoon.com/tagged/javascript'
     axios
@@ -33,6 +29,26 @@ module.exports = app => {
       })
       .catch(error => {
         res.status(500).json(error)
+      })
+  })
+
+  app.post('/articles/:articleId/comments', (req, res) => {
+    const { articleId } = req.params
+    // create a new note
+    db.Comment.create(req.body)
+      .then(dbComment => {
+        // add the note to the article for the given articleId
+        return db.Article.findByIdAndUpdate(articleId, {
+          $push: { comments: dbComment }
+        })
+      })
+      .then(() => {
+        // send a response
+        res.redirect('/')
+      })
+      .catch(error => {
+        // handle errors
+        res.status(400).json(error)
       })
   })
 }
