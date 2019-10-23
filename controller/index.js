@@ -51,4 +51,17 @@ module.exports = app => {
         res.status(400).json(error)
       })
   })
+
+  // route to delete all the comments in case someone adds
+  // something nasty
+  app.delete('/comments', (req, res) => {
+    db.Comment.deleteMany({})
+      .then(({ deletedCount }) => {
+        res.json({ deletedCount })
+      })
+      .catch(error => {
+        console.log(error)
+        res.status(500).send('An unexpected error occurred.')
+      })
+  })
 }
