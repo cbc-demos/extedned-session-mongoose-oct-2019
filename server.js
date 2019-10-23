@@ -1,5 +1,12 @@
 const express = require('express')
-var exphbs = require('express-handlebars')
+const exphbs = require('express-handlebars')
+const mongoose = require('mongoose')
+
+const controller = require('./controller')
+
+mongoose.connect('mongodb://localhost/extSessionScraper', {
+  useNewUrlParser: true
+})
 
 const app = express()
 const PORT = process.env.PORT || 8080
@@ -12,8 +19,6 @@ app.set('view engine', 'handlebars')
 
 app.use(express.static('public'))
 
-app.get('/', (req, res) => {
-  res.render('home')
-})
+controller(app)
 
 app.listen(PORT, () => console.log(`App is on http://localhost:${PORT}`))
