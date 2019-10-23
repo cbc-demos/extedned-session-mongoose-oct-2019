@@ -1,1 +1,14 @@
-<h1>Hello, World!</h1>
+<h1>Scraper!</h1>
+
+<a href="/scrape" class="btn btn-primary btn-lg">Scrape!</a>
+
+<hr>
+
+{{#each articles}}
+  <div>
+    <h2 class="h4">{{title}}</h2>
+    <a href="{{url}}">{{url}}</a>
+  </div>
+{{/each}}
+
+

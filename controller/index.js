@@ -4,7 +4,12 @@ const db = require('../model')
 
 module.exports = app => {
   app.get('/', (req, res) => {
-    res.render('home')
+    db.Article
+      .find()
+      .sort({ _id: -1 })
+      .limit(20)
+      .then(dbArticles => res.render('home', { articles: dbArticles }))
+      .catch(error => res.status(500).json(error))
   })
 
   // DONE step 1: getting a request working from hackerank

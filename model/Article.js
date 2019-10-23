@@ -15,6 +15,7 @@ const ArticleSchema = new Schema({
     type: String,
     required: true,
     trim: true,
+    unique: true,
     validate: myURL => {
       const pattern = new RegExp(
         '^(https?:\\/\\/)?' + // protocol
